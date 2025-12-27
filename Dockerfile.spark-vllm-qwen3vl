@@ -1,0 +1,21 @@
+# Dockerfile for Qwen3-VL on DGX Spark
+# Based on avarok/vllm-dgx-spark optimized for Blackwell GB10
+FROM avarok/vllm-dgx-spark:v11
+
+# Default environment variables
+ENV MODEL="Qwen/Qwen3-VL-30B-A3B-Instruct"
+ENV PORT=8001
+ENV GPU_MEMORY_UTILIZATION=0.8
+ENV VLLM_API_KEY=""
+
+# vLLM optimization settings for DGX Spark
+ENV VLLM_FLASHINFER_MOE_BACKEND=latency
+
+# Expose the default port (can be overridden)
+EXPOSE 8001
+
+# Create entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
