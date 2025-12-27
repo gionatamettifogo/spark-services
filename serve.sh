@@ -30,10 +30,10 @@ docker run --rm -it \
 #   VLLM_API_KEY=your-key ./serve.sh
 #
 # With different model:
-#   MODEL=Qwen/Qwen3-VL-30B-A3B-Thinking-FP8 ./serve.sh
+#   MODEL=Qwen/Qwen3-VL-30B-A3B-Thinking ./serve.sh
 #
 # With different port:
 #   PORT=8080 ./serve.sh
 #
 # Combined:
-#   MODEL=Qwen/Qwen2.5-VL-7B-Instruct PORT=8080 VLLM_API_KEY=secret ./serve.sh
+#   MODEL=Qwen/Qwen3-VL-30B-A3B-Thinking PORT=8080 VLLM_API_KEY=secret ./serve.sh

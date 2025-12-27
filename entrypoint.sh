@@ -13,7 +13,8 @@ CMD="vllm serve \"${MODEL}\" \
 
 # Add reasoning parser for Thinking models
 if [[ "${MODEL}" == *"Thinking"* ]]; then
-    CMD="${CMD} --reasoning-parser qwen3"
+    # Use deepseek_r1 parser as it handles implicit opening <think> tags better than the qwen3 parser
+    CMD="${CMD} --reasoning-parser deepseek_r1"
 fi
 
 # Add API key if provided
