@@ -11,6 +11,11 @@ CMD="vllm serve \"${MODEL}\" \
     --enforce-eager \
     --gpu-memory-utilization ${GPU_MEMORY_UTILIZATION}"
 
+# Add reasoning parser for Thinking models
+if [[ "${MODEL}" == *"Thinking"* ]]; then
+    CMD="${CMD} --reasoning-parser qwen3"
+fi
+
 # Add API key if provided
 if [ -n "${VLLM_API_KEY}" ]; then
     CMD="${CMD} --api-key ${VLLM_API_KEY}"
