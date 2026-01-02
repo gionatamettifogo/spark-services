@@ -4,7 +4,8 @@ FROM avarok/vllm-dgx-spark:v11
 
 # Default environment variables
 ENV MODEL="Qwen/Qwen3-VL-30B-A3B-Instruct"
-ENV PORT=8001
+ARG PORT=8001
+ENV PORT=$PORT
 ENV GPU_MEMORY_UTILIZATION=0.8
 ENV VLLM_API_KEY=""
 
@@ -12,7 +13,11 @@ ENV VLLM_API_KEY=""
 ENV VLLM_FLASHINFER_MOE_BACKEND=latency
 
 # Expose the default port (can be overridden)
-EXPOSE 8001
+EXPOSE $PORT
+
+# Add health check
+HEALTHCHECK --interval=60s --timeout=10s --retries=3 \
+    CMD curl -f http://localhost:$PORT/v1/models || exit 1
 
 # Create entrypoint script
 COPY entrypoint.sh /entrypoint.sh
