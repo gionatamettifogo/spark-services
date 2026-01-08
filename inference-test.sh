@@ -3,6 +3,7 @@
 #   export EMBED_API_KEY=xxx
 #   ./quick-test.sh
 
+echo -e "\n\nTesting LLM Capabilities..."
 curl -s http://localhost:8001/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer very-secret-key-to-be-replaced" \
@@ -12,7 +13,7 @@ curl -s http://localhost:8001/v1/chat/completions \
     "max_tokens":600
   }'
 
-echo -e "\n\nTesting Vision Capabilities..."
+echo -e "\n\nTesting VLM Capabilities..."
 curl -s http://localhost:8001/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer very-secret-key-to-be-replaced" \
@@ -29,7 +30,7 @@ curl -s http://localhost:8001/v1/chat/completions \
           {
             "type": "image_url",
             "image_url": {
-              "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg"
+              "url": "https://avatars.githubusercontent.com/u/9919?s=200&v=4"
             }
           }
         ]
@@ -41,6 +42,7 @@ curl -s http://localhost:8001/v1/chat/completions \
 
 
 # test embedding model
+echo -e "\n\nTesting Embedding Capabilities..."
 curl -s http://localhost:8002/v1/embeddings \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer very-secret-key-to-be-replaced" \
